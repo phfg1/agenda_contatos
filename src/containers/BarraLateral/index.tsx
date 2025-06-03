@@ -9,7 +9,7 @@ const BarraLateral = () => {
           <Campo type="text" placeholder="buscar" />
         </div>
         <div>
-          <FiltroContato contador={15} legenda={'Todos'} />
+          <FiltroContato contador={15} legenda={'Todos'} ativo />
           <FiltroContato contador={5} legenda={'Família'} />
           <FiltroContato contador={5} legenda={'Amigos'} />
           <FiltroContato contador={5} legenda={'Trabalho'} />

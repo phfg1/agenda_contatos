@@ -1,7 +1,22 @@
 import styled from 'styled-components'
+import variaveis from '../../styles/variaveis'
+
+type CategoriaProps = {
+  categoria: string
+}
+
+function RetornaCorCategoria(props: CategoriaProps): string {
+  if ('categoria' in props) {
+    if (props.categoria === 'Todos') return variaveis.cinza
+    if (props.categoria === 'Família') return variaveis.verde
+    if (props.categoria === 'Amigos') return variaveis.azul
+    if (props.categoria === 'Trabalho') return variaveis.vermelho
+  }
+  return variaveis.cinza
+}
 
 export const Card = styled.div`
-  backgorund-color: #fcfcfc;
+  backgorund-color: ${variaveis.cinzaClaro};
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   padding: 1rem;
   margin-bottom: 2rem;
@@ -19,9 +34,14 @@ export const Nome = styled.h3`
   font-weight: bold;
   margin: 0 0.5rem 0 0.5rem;
 `
-export const Categoria = styled.span`
+export const Categoria = styled.span<CategoriaProps>`
+  padding: 0.25rem 0.5rem;
   font-size: 0.8rem;
+  font-weight: bold;
   margin: 0.2rem 2rem 0 0.5rem;
+  border-radius: 0.5rem;
+  color: ${variaveis.cinzaClaro};
+  background-color: ${(props) => RetornaCorCategoria(props)};
 `
 export const DadosEditaveis = styled.ul`
   margin-bottom: 0.5rem;
@@ -45,10 +65,16 @@ export const BotaoEsquerdo = styled.button`
   padding: 0.5rem 0.75rem;
   border: none;
   cursor: pointer;
-  background-color: #2f3640;
+  background-color: ${variaveis.cinza};
   border-radius: 0.5rem 0 0 0.5rem;
 `
 export const BotaoDireito = styled(BotaoEsquerdo)`
   border-radius: 0 0.5rem 0.5rem 0;
   margin-left: 0.05rem;
+`
+export const BotaoSalvar = styled(BotaoEsquerdo)`
+  background-color: ${variaveis.verde};
+`
+export const BotaoExcluir = styled(BotaoDireito)`
+  background-color: ${variaveis.vermelho};
 `

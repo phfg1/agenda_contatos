@@ -19,7 +19,7 @@ export const MainContainer = styled.main`
   height: 95vh;
   overflow-y: scroll;
 `
-export const ContainerCard = styled.div`
+export const ContainerCard = styled.ul`
   display: grid;
   grid-template-columns: 1fr 1fr;
   margin: 0 auto;
