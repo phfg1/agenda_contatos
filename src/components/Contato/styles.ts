@@ -1,16 +1,17 @@
 import styled from 'styled-components'
 import variaveis from '../../styles/variaveis'
+import * as enums from '../../utils/enums/Contato'
 
 type CategoriaProps = {
-  categoria: string
+  categoria: enums.Categoria
 }
 
 function RetornaCorCategoria(props: CategoriaProps): string {
   if ('categoria' in props) {
-    if (props.categoria === 'Todos') return variaveis.cinza
-    if (props.categoria === 'Família') return variaveis.verde
-    if (props.categoria === 'Amigos') return variaveis.azul
-    if (props.categoria === 'Trabalho') return variaveis.vermelho
+    if (props.categoria === enums.Categoria.TODOS) return variaveis.cinza
+    if (props.categoria === enums.Categoria.FAMILIA) return variaveis.verde
+    if (props.categoria === enums.Categoria.AMIGOS) return variaveis.azul
+    if (props.categoria === enums.Categoria.TRABALHO) return variaveis.vermelhoClaro
   }
   return variaveis.cinza
 }
@@ -40,8 +41,8 @@ export const Categoria = styled.span<CategoriaProps>`
   font-weight: bold;
   margin: 0.2rem 2rem 0 0.5rem;
   border-radius: 0.5rem;
-  color: ${variaveis.cinzaClaro};
-  background-color: ${(props) => RetornaCorCategoria(props)};
+  color: ${(props) => RetornaCorCategoria(props)};
+  background-color: ${variaveis.cinza};
 `
 export const DadosEditaveis = styled.ul`
   margin-bottom: 0.5rem;
@@ -51,7 +52,7 @@ export const ContatoInfos = styled.input`
   width: 15rem;
   margin-left: 0.5rem;
   border: none;
-  background-color: transparet;
+  background-color: #fff;
   cursor: pointer;
 `
 export const BarraAcoes = styled.div`
@@ -71,10 +72,8 @@ export const BotaoEsquerdo = styled.button`
 export const BotaoDireito = styled(BotaoEsquerdo)`
   border-radius: 0 0.5rem 0.5rem 0;
   margin-left: 0.05rem;
+  color: ${variaveis.vermelhoClaro};
 `
 export const BotaoSalvar = styled(BotaoEsquerdo)`
-  background-color: ${variaveis.verde};
-`
-export const BotaoExcluir = styled(BotaoDireito)`
-  background-color: ${variaveis.vermelho};
+  color: ${variaveis.verde};
 `

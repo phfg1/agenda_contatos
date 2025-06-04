@@ -1,37 +1,28 @@
+import { useSelector } from 'react-redux'
 import CardContato from '../../components/Contato'
 import { ContainerCard, MainContainer, Titulo } from '../../styles'
-
-const contatos = [
-  {
-    nome: 'Alice',
-    categoria: 'Família',
-    telefone: '(13)9999-1234',
-    email: 'lylis@lilys.com',
-    aniversario: '16/02/2022'
-  },
-  {
-    nome: 'Bob Marley',
-    categoria: 'Amigos',
-    telefone: '(13)9999-1234',
-    email: 'lylis@lilys.com',
-    aniversario: '16/02/2022'
-  },
-  {
-    nome: 'Clinton Fearon',
-    categoria: 'Trabalho',
-    telefone: '(13)9999-1234',
-    email: 'lylis@lilys.com',
-    aniversario: '16/02/2022'
-  }
-]
+import { RootReducer } from '../../store'
 
 const ListaContatos = () => {
+  const { contatos } = useSelector((state: RootReducer) => state)
+  const contatosOrdenados = [...contatos.itens].sort((a, b) => {
+    return a.nome.localeCompare(b.nome)
+  })
+
+  const { termo } = useSelector((state: RootReducer) => state.filtro)
+
+  const filtraContatos = () => {
+    return contatosOrdenados.filter(
+      (item) => item.nome.toLowerCase().search(termo.toLowerCase()) >= 0
+    )
+  }
   return (
     <>
       <MainContainer>
         <Titulo>Contatos</Titulo>
+        <span>{termo}</span> <br />
         <ContainerCard>
-          {contatos.map((c) => (
+          {filtraContatos().map((c) => (
             <li key={c.nome}>
               <CardContato
                 nome={c.nome}
@@ -39,6 +30,7 @@ const ListaContatos = () => {
                 telefone={c.telefone}
                 email={c.email}
                 aniversario={c.aniversario}
+                id={c.id}
               />
             </li>
           ))}
