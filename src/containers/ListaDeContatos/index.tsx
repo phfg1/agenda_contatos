@@ -9,18 +9,25 @@ const ListaContatos = () => {
     return a.nome.localeCompare(b.nome)
   })
 
-  const { termo } = useSelector((state: RootReducer) => state.filtro)
+  const { termo, valor } = useSelector((state: RootReducer) => state.filtro)
 
   const filtraContatos = () => {
-    return contatosOrdenados.filter(
-      (item) => item.nome.toLowerCase().search(termo.toLowerCase()) >= 0
-    )
+    if (termo) {
+      return contatosOrdenados.filter(
+        (item) => item.nome.toLowerCase().search(termo.toLowerCase()) >= 0
+      )
+    } else {
+      return contatosOrdenados
+    }
   }
   return (
     <>
       <MainContainer>
         <Titulo>Contatos</Titulo>
-        <span>{termo}</span> <br />
+        <span>
+          {termo}:{valor}
+        </span>{' '}
+        <br />
         <ContainerCard>
           {filtraContatos().map((c) => (
             <li key={c.nome}>

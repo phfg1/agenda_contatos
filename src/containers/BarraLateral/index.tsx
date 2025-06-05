@@ -3,6 +3,7 @@ import FiltroContato from '../../components/FIltroCard'
 import { Aside, Campo } from './styles'
 import { RootReducer } from '../../store'
 import { alterarTermo } from '../../store/reducers/filtro'
+import * as enums from '../../utils/enums/Contato'
 
 const BarraLateral = () => {
   const dispatch = useDispatch()
@@ -20,10 +21,31 @@ const BarraLateral = () => {
           />
         </div>
         <div>
-          <FiltroContato contador={15} legenda={'Todos'} ativo />
-          <FiltroContato contador={5} legenda={'Família'} />
-          <FiltroContato contador={5} legenda={'Amigos'} />
-          <FiltroContato contador={5} legenda={'Trabalho'} />
+          <FiltroContato
+            criterio={enums.Categoria.TODOS}
+            valor="Todos"
+            contador={15}
+            legenda={'Todos'}
+            ativo
+          />
+          <FiltroContato
+            criterio={enums.Categoria.FAMILIA}
+            valor="Família"
+            contador={5}
+            legenda={'Família'}
+          />
+          <FiltroContato
+            criterio={enums.Categoria.AMIGOS}
+            valor="Amigos"
+            contador={5}
+            legenda={'Amigos'}
+          />
+          <FiltroContato
+            criterio={enums.Categoria.TRABALHO}
+            valor="Trabalho"
+            contador={5}
+            legenda={'Trabalho'}
+          />
         </div>
       </Aside>
     </>

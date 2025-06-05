@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import { Props } from './index'
 
-type PropsSemLegendaEContador = Omit<Props, 'contador' | 'legenda'>
+type PropsSemLegendaEContador = Omit<Props, 'contador' | 'legenda' | 'valor' | 'criterio'>
 
 export const Card = styled.div<PropsSemLegendaEContador>`
   padding: 0.5rem;
