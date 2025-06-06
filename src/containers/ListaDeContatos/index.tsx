@@ -2,35 +2,40 @@ import { useSelector } from 'react-redux'
 import CardContato from '../../components/Contato'
 import { ContainerCard, MainContainer, Titulo } from '../../styles'
 import { RootReducer } from '../../store'
+import * as enums from '../../utils/enums/Contato'
 
 const ListaContatos = () => {
   const { contatos } = useSelector((state: RootReducer) => state)
-  const contatosOrdenados = [...contatos.itens].sort((a, b) => {
-    return a.nome.localeCompare(b.nome)
-  })
-
-  const { termo, valor } = useSelector((state: RootReducer) => state.filtro)
+  const { termo, valor, criterio } = useSelector((state: RootReducer) => state.filtro)
 
   const filtraContatos = () => {
-    if (termo) {
-      return contatosOrdenados.filter(
-        (item) => item.nome.toLowerCase().search(termo.toLowerCase()) >= 0
-      )
-    } else {
-      return contatosOrdenados
+    let contatosResultantes = [...contatos.itens]
+    if (criterio === 'categoria' && valor !== 'Todos') {
+      contatosResultantes = contatosResultantes.filter((item) => item.categoria === valor)
     }
+    if (termo && criterio === 'busca_nome') {
+      contatosResultantes = contatosResultantes.filter((item) =>
+        item.nome.toLocaleLowerCase().includes(termo.toLocaleLowerCase())
+      )
+    }
+    return contatosResultantes.sort((a, b) => {
+      return a.nome.localeCompare(b.nome)
+    })
   }
+  const contatosParaExibir = filtraContatos()
   return (
     <>
       <MainContainer>
         <Titulo>Contatos</Titulo>
         <span>
-          {termo}:{valor}
+          {termo ? `Filtro por nome: "${termo}"` : ''}
+          {criterio === 'categoria' && valor !== 'Todos' ? `Filtro por categoria: ${valor}` : ''}
+          {/* {criterio === 'todos' && !termo ? 'Mostrando todos os contatos' : ''} */}
         </span>{' '}
         <br />
         <ContainerCard>
-          {filtraContatos().map((c) => (
-            <li key={c.nome}>
+          {contatosParaExibir.map((c) => (
+            <li key={c.id}>
               <CardContato
                 nome={c.nome}
                 categoria={c.categoria}

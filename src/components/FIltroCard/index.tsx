@@ -1,30 +1,39 @@
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import * as S from './styles'
 import { alterarFiltro } from '../../store/reducers/filtro'
-import * as enums from '../../utils/enums/Contato'
+import { RootReducer } from '../../store'
 
 export type Props = {
-  ativo?: boolean
-  contador: number
   legenda: string
   valor: 'Família' | 'Amigos' | 'Trabalho' | 'Todos'
-  criterio: enums.Categoria
+  criterio: 'categoria' | 'todos'
+  quantidadeContatos: number
 }
 
-const FiltroContato = ({ ativo, contador, legenda, criterio, valor }: Props) => {
+const FiltroContato = ({ quantidadeContatos, legenda, criterio, valor }: Props) => {
   const dispatch = useDispatch()
+  const { filtro } = useSelector((state: RootReducer) => state)
+
+  const verificaEstaAtivo = () => {
+    const mesmoValor = filtro.valor === valor
+    const mesmoCriterio = filtro.criterio === criterio
+
+    return mesmoCriterio && mesmoValor
+  }
+
+  const ativo = verificaEstaAtivo()
 
   const filtrar = () => {
     dispatch(
       alterarFiltro({
-        criterio,
-        valor
+        criterio: criterio,
+        valor: valor
       })
     )
   }
   return (
     <S.Card ativo={ativo} onClick={filtrar}>
-      <S.Contador>{contador} Contatos</S.Contador>
+      <S.Contador>{quantidadeContatos} Contatos</S.Contador>
       <S.Label>
         <b>Categoria:</b> {legenda}
       </S.Label>

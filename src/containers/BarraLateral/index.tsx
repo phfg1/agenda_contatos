@@ -4,10 +4,20 @@ import { Aside, Campo } from './styles'
 import { RootReducer } from '../../store'
 import { alterarTermo } from '../../store/reducers/filtro'
 import * as enums from '../../utils/enums/Contato'
+import BotaoCadastro from '../../components/BotaoCadastro'
 
 const BarraLateral = () => {
   const dispatch = useDispatch()
   const { termo } = useSelector((state: RootReducer) => state.filtro)
+  const { contatos } = useSelector((state: RootReducer) => state)
+
+  const getContadorPorCategoria = (categoria: 'Família' | 'Amigos' | 'Trabalho' | 'Todos') => {
+    if (categoria === 'Todos') {
+      return contatos.itens.length
+    } else {
+      return contatos.itens.filter((item) => item.categoria === categoria).length
+    }
+  }
 
   return (
     <>
@@ -22,31 +32,31 @@ const BarraLateral = () => {
         </div>
         <div>
           <FiltroContato
-            criterio={enums.Categoria.TODOS}
+            criterio={'todos'}
             valor="Todos"
-            contador={15}
+            quantidadeContatos={getContadorPorCategoria('Todos')}
             legenda={'Todos'}
-            ativo
           />
           <FiltroContato
-            criterio={enums.Categoria.FAMILIA}
-            valor="Família"
-            contador={5}
+            criterio={'categoria'}
+            valor={enums.Categoria.FAMILIA}
+            quantidadeContatos={getContadorPorCategoria(enums.Categoria.FAMILIA)}
             legenda={'Família'}
           />
           <FiltroContato
-            criterio={enums.Categoria.AMIGOS}
-            valor="Amigos"
-            contador={5}
+            criterio={'categoria'}
+            valor={enums.Categoria.AMIGOS}
+            quantidadeContatos={getContadorPorCategoria(enums.Categoria.AMIGOS)}
             legenda={'Amigos'}
           />
           <FiltroContato
-            criterio={enums.Categoria.TRABALHO}
-            valor="Trabalho"
-            contador={5}
+            criterio={'categoria'}
+            valor={enums.Categoria.TRABALHO}
+            quantidadeContatos={getContadorPorCategoria(enums.Categoria.TRABALHO)}
             legenda={'Trabalho'}
           />
         </div>
+        <BotaoCadastro />
       </Aside>
     </>
   )

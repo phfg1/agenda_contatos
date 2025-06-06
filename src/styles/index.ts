@@ -34,4 +34,16 @@ export const Titulo = styled.h2`
   font-weight: bold;
   text-align: center;
 `
+
+export const CampoCadastro = styled.input`
+  width: 100%;
+  padding: 0.25rem;
+  background-color: #fff;
+  color: #666666
+  border: 0.0625rem solid #666666;
+  border-radius: 0.5rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+`
+
 export default GLobalStyle
