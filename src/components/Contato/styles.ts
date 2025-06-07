@@ -77,3 +77,6 @@ export const BotaoDireito = styled(BotaoEsquerdo)`
 export const BotaoSalvar = styled(BotaoEsquerdo)`
   color: ${variaveis.verde};
 `
+export const BotaoCadastrar = styled(BotaoSalvar)`
+  border-radius: 0.5rem;
+`

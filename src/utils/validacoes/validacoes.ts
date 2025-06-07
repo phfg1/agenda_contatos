@@ -1,7 +1,7 @@
 const validaTelefone = (tel: string): boolean => {
   const telefoneLimpo = tel.replace(/\s/g, '')
-  if (telefoneLimpo.length > 13 || telefoneLimpo.length < 12) {
-    alert('Digite um número de telefone válido. ex: (13)9999-1234')
+  if (telefoneLimpo.length > 14 || telefoneLimpo.length < 13) {
+    alert('Digite um número de telefone válido. ex: (13)99653-1234')
     return false
   }
   const regexTelefone = /^[0-9()-]+$/
