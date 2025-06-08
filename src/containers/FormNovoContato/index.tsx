@@ -1,6 +1,7 @@
 import { FormEvent, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
+import { useIMask } from 'react-imask'
 
 import { CampoCadastro, MainContainer, Titulo } from '../../styles'
 import { ContainerRadio, Form } from './styles'
@@ -21,16 +22,25 @@ const Formulario = () => {
 
   const cadastrarContato = (evento: FormEvent) => {
     evento.preventDefault()
+
     const confirmacao = window.confirm(
       `Os dados nome: ${nome} e categoria: ${categoria} estão corretos? Não é possível edita-los.`
     )
     if (!confirmacao) {
       return
     }
-    const contatoParaAdicionar = { nome, categoria, telefone, email, aniversario }
+    const contatoParaAdicionar = {
+      nome,
+      categoria,
+      telefone,
+      email,
+      aniversario
+    }
     if (!validaSalvamento(telefone, email, aniversario)) {
       return
     }
+    console.log(telefone)
+    console.log(nome)
     dispatch(cadastrar(contatoParaAdicionar))
     navigate('/')
   }
@@ -48,7 +58,7 @@ const Formulario = () => {
         <CampoCadastro
           value={telefone}
           onChange={(evento) => setTelefone(evento.target.value)}
-          type="text"
+          type="tel"
           placeholder="Telefone - (DD)XXXXX-XXXX"
         />
         <CampoCadastro

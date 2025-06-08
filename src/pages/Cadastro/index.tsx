@@ -4,7 +4,7 @@ import Formulario from '../../containers/FormNovoContato'
 const Cadastro = () => {
   return (
     <>
-      <BarraLateral />
+      <BarraLateral mostrarFiltro={false} />
       <Formulario />
     </>
   )

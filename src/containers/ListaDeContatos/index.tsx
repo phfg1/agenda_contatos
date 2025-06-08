@@ -5,11 +5,11 @@ import { RootReducer } from '../../store'
 import * as enums from '../../utils/enums/Contato'
 
 const ListaContatos = () => {
-  const { contatos } = useSelector((state: RootReducer) => state)
+  const { itens: contatosItens } = useSelector((state: RootReducer) => state.contatos)
   const { termo, valor, criterio } = useSelector((state: RootReducer) => state.filtro)
 
   const filtraContatos = () => {
-    let contatosResultantes = [...contatos.itens]
+    let contatosResultantes = [...contatosItens]
     if (valor !== enums.Categoria.TODOS) {
       contatosResultantes = contatosResultantes.filter((item) => item.categoria === valor)
     }

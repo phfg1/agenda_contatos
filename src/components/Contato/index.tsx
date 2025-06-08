@@ -50,7 +50,7 @@ const CardContato = ({ nome, categoria, telefone, email, aniversario, id }: Prop
             {nome}
             {estaEditando && <Editando> - Editando</Editando>}
           </S.Nome>
-          <S.Categoria categoria={categoria}>{categoria}</S.Categoria>
+          <S.Categoria $categoria={categoria}>{categoria}</S.Categoria>
         </S.TopCard>
         <S.DadosEditaveis>
           <li>

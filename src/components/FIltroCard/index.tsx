@@ -12,7 +12,7 @@ export type Props = {
 
 const FiltroContato = ({ quantidadeContatos, legenda, criterio, valor }: Props) => {
   const dispatch = useDispatch()
-  const { filtro } = useSelector((state: RootReducer) => state)
+  const filtro = useSelector((state: RootReducer) => state.filtro)
 
   const verificaEstaAtivo = () => {
     const mesmoValor = filtro.valor === valor
@@ -32,7 +32,7 @@ const FiltroContato = ({ quantidadeContatos, legenda, criterio, valor }: Props) 
     )
   }
   return (
-    <S.Card ativo={ativo} onClick={filtrar}>
+    <S.Card $ativo={ativo} onClick={filtrar}>
       <S.Contador>{quantidadeContatos} Contatos</S.Contador>
       <S.Label>
         <b>Categoria:</b> {legenda}

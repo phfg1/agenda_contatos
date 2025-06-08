@@ -11,7 +11,7 @@ const initialState: ContatosState = {
     {
       nome: 'Pedro',
       categoria: enums.Categoria.AMIGOS,
-      telefone: '(13)999-97894',
+      telefone: '(13)9999-7894',
       email: 'phfg@phfg.com.br',
       aniversario: '09/07',
       id: 1

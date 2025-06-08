@@ -3,15 +3,15 @@ import variaveis from '../../styles/variaveis'
 import * as enums from '../../utils/enums/Contato'
 
 type CategoriaProps = {
-  categoria: enums.Categoria
+  $categoria: enums.Categoria
 }
 
 function RetornaCorCategoria(props: CategoriaProps): string {
-  if ('categoria' in props) {
-    if (props.categoria === enums.Categoria.TODOS) return variaveis.cinza
-    if (props.categoria === enums.Categoria.FAMILIA) return variaveis.verde
-    if (props.categoria === enums.Categoria.AMIGOS) return variaveis.azul
-    if (props.categoria === enums.Categoria.TRABALHO) return variaveis.vermelhoClaro
+  if ('$categoria' in props) {
+    if (props.$categoria === enums.Categoria.TODOS) return variaveis.cinza
+    if (props.$categoria === enums.Categoria.FAMILIA) return variaveis.verde
+    if (props.$categoria === enums.Categoria.AMIGOS) return variaveis.azul
+    if (props.$categoria === enums.Categoria.TRABALHO) return variaveis.vermelhoClaro
   }
   return variaveis.cinza
 }
