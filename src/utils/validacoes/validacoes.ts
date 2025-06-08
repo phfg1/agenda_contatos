@@ -4,7 +4,7 @@ const validaTelefone = (tel: string): boolean => {
     alert('Digite um número de telefone válido. ex: (13)99653-1234')
     return false
   }
-  const regexTelefone = /^\(\d{2}\)\d{5}-\d{4}$/
+  const regexTelefone = /^[0-9()-]+$/
   if (!regexTelefone.test(telefoneLimpo)) {
     alert('O telefone deve conter apenas números, parênteses e traço')
     return false
