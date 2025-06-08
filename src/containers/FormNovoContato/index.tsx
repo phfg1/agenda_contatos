@@ -1,11 +1,11 @@
 import { FormEvent, useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { IMaskInput } from 'react-imask'
 import { useNavigate } from 'react-router-dom'
 
 import { CampoCadastro, MainContainer, Titulo } from '../../styles'
-import { ContainertRadio, Form } from './styles'
+import { ContainerRadio, Form } from './styles'
 import * as enums from '../../utils/enums/Contato'
+
 import { cadastrar } from '../../store/reducers/contatos'
 import { validaSalvamento } from '../../utils/validacoes/validacoes'
 import { BotaoCadastrar } from '../../components/Contato/styles'
@@ -21,6 +21,12 @@ const Formulario = () => {
 
   const cadastrarContato = (evento: FormEvent) => {
     evento.preventDefault()
+    const confirmacao = window.confirm(
+      `Os dados nome: ${nome} e categoria: ${categoria} estão corretos? Não é possível edita-los.`
+    )
+    if (!confirmacao) {
+      return
+    }
     const contatoParaAdicionar = { nome, categoria, telefone, email, aniversario }
     if (!validaSalvamento(telefone, email, aniversario)) {
       return
@@ -57,7 +63,7 @@ const Formulario = () => {
           type="text"
           placeholder="Aniversário - ex: 09/07"
         />
-        <ContainertRadio>
+        <ContainerRadio>
           <p>Categoria:</p>
           {Object.values(enums.Categoria)
             .filter((categoria) => categoria !== enums.Categoria.TODOS)
@@ -74,7 +80,7 @@ const Formulario = () => {
                 <label htmlFor={categoria}>{categoria}</label>
               </div>
             ))}
-        </ContainertRadio>
+        </ContainerRadio>
         <BotaoCadastrar type="submit">Cadastrar</BotaoCadastrar>
       </Form>
     </MainContainer>

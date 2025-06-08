@@ -19,13 +19,13 @@ const filtroSlice = createSlice({
   reducers: {
     alterarTermo: (state, action: PayloadAction<string>) => {
       state.termo = action.payload
-      state.criterio = 'busca_nome'
-      state.valor = 'Todos'
+      // state.criterio = 'busca_nome'
+      // state.valor = 'Todos'
     },
     alterarFiltro: (state, action: PayloadAction<FiltroState>) => {
       state.criterio = action.payload.criterio
       state.valor = action.payload.valor
-      state.termo = ''
+      // state.termo = ''
     }
   }
 })

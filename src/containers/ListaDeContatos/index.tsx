@@ -10,10 +10,10 @@ const ListaContatos = () => {
 
   const filtraContatos = () => {
     let contatosResultantes = [...contatos.itens]
-    if (criterio === 'categoria' && valor !== 'Todos') {
+    if (valor !== enums.Categoria.TODOS) {
       contatosResultantes = contatosResultantes.filter((item) => item.categoria === valor)
     }
-    if (termo && criterio === 'busca_nome') {
+    if (termo) {
       contatosResultantes = contatosResultantes.filter((item) =>
         item.nome.toLocaleLowerCase().includes(termo.toLocaleLowerCase())
       )
@@ -29,7 +29,7 @@ const ListaContatos = () => {
         <Titulo>Contatos</Titulo>
         <span>
           {termo ? `Filtro por nome: "${termo}"` : ''}
-          {criterio === 'categoria' && valor !== 'Todos' ? `Filtro por categoria: ${valor}` : ''}
+          {criterio === 'categoria' && valor !== 'Todos' ? ` Filtro por categoria: ${valor}` : ''}
           {/* {criterio === 'todos' && !termo ? 'Mostrando todos os contatos' : ''} */}
         </span>{' '}
         <br />

@@ -5,7 +5,7 @@ export const Form = styled.form`
   width: 100%;
 `
 
-export const ContainertRadio = styled.div`
+export const ContainerRadio = styled.div`
   display: flex;
   flex-wrap: wrap;
   align-itens: center;

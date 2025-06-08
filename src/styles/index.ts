@@ -44,6 +44,10 @@ export const CampoCadastro = styled.input`
   border-radius: 0.5rem;
   font-weight: bold;
   margin-bottom: 0.5rem;
+
+    &::placeholder {
+    color: #666666;
+  }
 `
 
 export default GLobalStyle

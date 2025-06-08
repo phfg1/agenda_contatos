@@ -5,6 +5,7 @@ import * as S from './styles'
 import { remover, editar } from '../../store/reducers/contatos'
 import Contato from '../../models/Contato'
 import { validaSalvamento } from '../../utils/validacoes/validacoes'
+import { Editando } from './styles'
 
 type Props = Contato
 
@@ -45,7 +46,10 @@ const CardContato = ({ nome, categoria, telefone, email, aniversario, id }: Prop
     <>
       <S.Card>
         <S.TopCard>
-          <S.Nome>{nome}</S.Nome>
+          <S.Nome>
+            {nome}
+            {estaEditando && <Editando> - Editando</Editando>}
+          </S.Nome>
           <S.Categoria categoria={categoria}>{categoria}</S.Categoria>
         </S.TopCard>
         <S.DadosEditaveis>

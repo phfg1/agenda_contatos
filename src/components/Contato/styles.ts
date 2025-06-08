@@ -80,3 +80,7 @@ export const BotaoSalvar = styled(BotaoEsquerdo)`
 export const BotaoCadastrar = styled(BotaoSalvar)`
   border-radius: 0.5rem;
 `
+export const Editando = styled.em`
+  font-weight: bold;
+  font-size: 1rem;
+`
