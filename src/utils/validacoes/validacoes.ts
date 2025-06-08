@@ -33,9 +33,9 @@ const validaAniversario = (dataString: string): boolean => {
 }
 
 export const validaSalvamento = (telefone: string, email: string, aniversario: string): boolean => {
-  // if (!validaTelefone(telefone)) {
-  //   return false
-  // }
+  if (!validaTelefone(telefone)) {
+    return false
+  }
   if (!validaEmail(email)) {
     return false
   }
